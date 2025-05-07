@@ -2,6 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{DBA493E0-17A2-443D-A6AE-9EFE0CA39FE0}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66BD53F8-E30E-45CE-AEC4-E607980F5B14}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chiron", "src\Chiron\Chiron.fsproj", "{9A3D39E9-CF75-4337-AE52-52EE425099D6}"

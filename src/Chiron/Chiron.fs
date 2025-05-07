@@ -1595,11 +1595,11 @@ module Serialization =
                 | Json.String s -> JsonResult.pass s
                 | json -> JsonResult.typeMismatch JsonMemberType.String json
 
-            let dateTimeParser s = System.DateTime.ParseExact (s, [| "s"; "r"; "o" |], CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal)
+            let dateTimeParser (s: string) = System.DateTime.ParseExact (s, [| "s"; "r"; "o" |], CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal)
             let dateTime =
                 string >=> Decoder.fromThrowingConverter dateTimeParser
 
-            let dateTimeOffsetParser s = System.DateTimeOffset.ParseExact (s, [| "yyyy-MM-dd'T'HH:mm:ss.FFFFFFF'Z'"; "o"; "r" |], CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal)
+            let dateTimeOffsetParser (s: string) = System.DateTimeOffset.ParseExact (s, [| "yyyy-MM-dd'T'HH:mm:ss.FFFFFFF'Z'"; "o"; "r" |], CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal)
             let dateTimeOffset =
                 string >=> Decoder.fromThrowingConverter dateTimeOffsetParser
 
