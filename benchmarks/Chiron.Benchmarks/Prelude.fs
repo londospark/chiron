@@ -15,11 +15,11 @@ type Dummy = Dummy
 type CoreConfig() =
     inherit ManualConfig()
     do
-        base.Add(Job.MediumRun)
-        base.Add(EnvironmentAnalyser.Default)
-        base.Add(MemoryDiagnoser.Default)
-        base.Add(BaselineValidator.FailOnError)
-        base.Add(JitOptimizationsValidator.FailOnError)
+        base.AddJob(Job.MediumRun) |> ignore
+        base.AddAnalyser(EnvironmentAnalyser.Default) |> ignore
+        base.AddDiagnoser(MemoryDiagnoser.Default) |> ignore
+        base.AddValidator(BaselineValidator.FailOnError) |> ignore
+        base.AddValidator(JitOptimizationsValidator.FailOnError) |> ignore
 
 let thisAssembly = typeof<Dummy>.GetTypeInfo().Assembly
 

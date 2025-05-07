@@ -29,7 +29,7 @@ module Bench =
 
         let serializer = JsonSerializer.CreateDefault()
 
-        let inline deserialize<'a> (stream : #Stream) : 'a =
+        let inline deserialize<'a> (stream : Stream) : 'a =
             let jsonReader = new StreamReader(stream, Encoding.UTF8)
             let reader = new JsonTextReader(jsonReader, CloseInput = false)
             serializer.Deserialize<'a> reader

@@ -131,6 +131,7 @@ type WriteString () =
         | "longWithCommonEscapes" -> Constants.longWithCommonEscapes
         | "longWithUncommonEscapes" -> Constants.longWithUncommonEscapes
         | "longWithAllEscapes" -> Constants.longWithAllEscapes
+        | _ -> failwith "unreachable"
 
     [<Params("short", "medium", "mediumWithCommonEscapes", "mediumWithUncommonEscapes", "mediumWithAllEscapes", "long", "longWithCommonEscapes", "longWithUncommonEscapes", "longWithAllEscapes")>]
     member val String = "" with get, set

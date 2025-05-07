@@ -593,7 +593,7 @@ module WithRecursion =
             E.buildWith nodeMixin n
 
         do
-            treeRef := function
+            treeRef.Value <- function
                 | Node n -> node n
                 | Leaf i -> E.buildWith leafMixin i
 
@@ -614,7 +614,7 @@ module WithRecursion =
             <!> D.jsonObjectWith decodeNode
 
         do
-            treeRef :=
+            treeRef.Value <-
                 D.oneOf
                     [ D.jsonObjectWith decodeLeaf
                       decodeTreeNode ]

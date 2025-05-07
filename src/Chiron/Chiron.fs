@@ -618,13 +618,13 @@ module Parsing =
         let toJsonObject = fun lst -> let map = Map.ofList lst in ReadObject (lst,map) |> Json.Object
         let jobject = listBetweenStrings "{" "}" keyValue toJsonObject
 
-        do jvalueRef := choice [jobject
-                                jlist
-                                jstring
-                                jnumber
-                                jtrue
-                                jfalse
-                                jnull]
+        do jvalueRef.Value <- choice [jobject
+                                      jlist
+                                      jstring
+                                      jnumber
+                                      jtrue
+                                      jfalse
+                                      jnull]
 
         let json = ws >>. jvalue .>> ws .>> eof
 
@@ -881,7 +881,7 @@ module Serialization =
 
             let ref<'a> (): JsonEncoder<'a> ref * JsonEncoder<'a> =
                 let innerRef = ref (Unchecked.defaultof<JsonEncoder<'a>>)
-                innerRef, (fun a -> (!innerRef) a)
+                innerRef, (fun a -> innerRef.Value a)
 
             let lazily (lazyEncode: Lazy<JsonEncoder<'a>>): JsonEncoder<'a> =
                 fun a -> lazyEncode.Force() a
@@ -1154,7 +1154,7 @@ module Serialization =
 
             let ref<'s, 'a> (): Decoder<'s,'a> ref * Decoder<'s,'a> =
                 let innerRef = ref (Unchecked.defaultof<Decoder<'s,'a>>)
-                innerRef, (fun s -> (!innerRef) s)
+                innerRef, (fun s -> innerRef.Value s)
 
             let lazily (lazyDecode: Lazy<Decoder<'s,'a>>): Decoder<'s,'a> =
                 fun s ->
